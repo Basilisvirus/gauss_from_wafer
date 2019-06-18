@@ -108,13 +108,14 @@ def norm_dist_calc(meas_thick, layer_name, info): #norm_dist_calc(array[], name 
 
 	for i in range(0,260,2):
 		j = i/1000
-		average_minus_68.append(average_minus_s) #[xyz, xyz, xyz.... ,xyz]
-		average_plus_68.append(average_plus_s)  #[xyz, xyz, xyz.... ,xyz]
-		average_minus_95.append(average_minus_2s) #[xyz, xyz, xyz.... ,xyz]
-		average_plus_95.append(average_plus_2s) #[xyz, xyz, xyz.... ,xyz]
-		average_minus_99.append(average_minus_3s) #[xyz, xyz, xyz.... ,xyz]
-		average_plus_99.append(average_plus_3s) #[xyz, xyz, xyz.... ,xyz]
-		moufa.append(j) #[0.00, 0.02, 0.04.... ,0.25]
+		if(j<=0.006):	
+			average_minus_68.append(average_minus_s) #[xyz, xyz, xyz.... ,xyz]
+			average_plus_68.append(average_plus_s)  #[xyz, xyz, xyz.... ,xyz]
+			average_minus_95.append(average_minus_2s) #[xyz, xyz, xyz.... ,xyz]
+			average_plus_95.append(average_plus_2s) #[xyz, xyz, xyz.... ,xyz]
+			average_minus_99.append(average_minus_3s) #[xyz, xyz, xyz.... ,xyz]
+			average_plus_99.append(average_plus_3s) #[xyz, xyz, xyz.... ,xyz]	
+			moufa.append(j) #[0.00, 0.02, 0.04.... ,0.25]
 
 	#title and subtitle
 	fig = plt.figure()
@@ -151,7 +152,6 @@ def norm_dist_calc(meas_thick, layer_name, info): #norm_dist_calc(array[], name 
 	ax.annotate("x+" +str(s_round), (average_plus_s, 0))
 	ax.annotate("x+2*" +str(s_round), (average_plus_2s, 0))
 	ax.annotate("x+3*" +str(s_round), (average_plus_3s, 0))
-
 
 	#Vertical lines for each average +- σ*n
 	#scatter average - 68
